@@ -24,37 +24,57 @@ class _CardWidgetState extends State<CardWidget> {
     cal = calBMI();
 
     String mybmi(double cal) {
-      if(cal<18.5) {
+      if (cal < 18.5) {
         return "Under Weight";
-      }else if(cal>18.6 && cal<25) {
+      } else if (cal > 18.6 && cal < 25) {
         return "Normal Weight";
-      }else if(cal>25 && cal<30){
+      } else if (cal > 25 && cal < 30) {
         return "Over Weight";
-      }else {
+      } else {
         return "Obese Weight";
       }
     }
 
     String ans = mybmi(cal);
 
-
     return Container(
-      height: 50,
+      height: 100,
       width: double.infinity,
       color: Colors.green,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Column(
-            children: [
-              Text("BMI (Body Mass Index)"),
-              SizedBox(
-                height: 2,
-              ),
-              Text("You have a $ans")
-            ],
-          ),
-          Text(cal.toStringAsFixed(2))
+          Column(children: [
+            Text("BMI (Body Mass Index)"),
+            SizedBox(
+              height: 2,
+            ),
+            Text("You have a $ans"),
+            SizedBox(
+              height: 2,
+            ),
+            ElevatedButton(
+                child: Text("View More"),
+                onPressed: () => showDialog<String>(
+                    context: context,
+                    builder: (BuildContext context) => Dialog(
+                        child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  Image.network('https://www.pnbmetlife.com/content/dam/pnb-metlife/images/icons/bmi-calculator/meter.png'),
+                                  const SizedBox(height: 50),
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    },
+                                    child: const Text('Close'),
+                                  ),
+                                ])))))
+          ]),
+          CircleAvatar(child: Text(cal.toStringAsFixed(2)))
         ],
       ),
     );
