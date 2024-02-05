@@ -31,6 +31,9 @@ class _SignupState extends State<Signup> {
         UserCredential userCredential = await FirebaseAuth.instance
             .createUserWithEmailAndPassword(email: _email, password: _password);
 
+            double height = double.parse(heightController.text);
+            double weight = double.parse(weightController.text);
+
         // Add user details to Firestore
         await FirebaseFirestore.instance
             .collection('users')
@@ -39,8 +42,8 @@ class _SignupState extends State<Signup> {
           'name': nameController.text,
           'email': emailController.text,
           'pass': passController.text,
-          'height': heightController.text,
-          'weight': weightController.text,
+          'height': height,
+          'weight': weight,
           // Add other user details as needed
         });
         Navigator.push(context, MaterialPageRoute(builder: (context)=>HomePage()));
