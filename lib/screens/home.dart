@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:myfit/screens/category.dart';
 import 'package:myfit/screens/dashboard.dart';
 import 'package:myfit/screens/diet.dart';
 import 'package:myfit/screens/map.dart';
@@ -21,8 +22,8 @@ class _HomePageState extends State<HomePage> {
   final List<Widget> _screens = [
     // Replace with the actual screen widgets
     Dashboard(),
+    Category(),
     WorkoutScreen(),
-    MapScreen(),
     Diet()
   ];
 
@@ -61,12 +62,12 @@ Widget build(BuildContext context) {
                 text: 'Dashboard',
               ),
               GButton(
-                icon: Icons.sports_gymnastics,
-                text: 'Workout',
+                icon: Icons.category,
+                text: 'Category',
               ),
               GButton(
-                icon: Icons.map,
-                text: 'Map',
+                icon: Icons.sports_gymnastics,
+                text: 'Workout',
               ),
               GButton(
                 icon: Icons.dining_rounded,
