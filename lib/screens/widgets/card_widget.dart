@@ -54,7 +54,7 @@ class _CardWidgetState extends State<CardWidget> {
               height: 2,
             ),
             ElevatedButton(
-                child: Text("View More"),
+                child: Text("BMI Chart"),
                 onPressed: () => showDialog<String>(
                     context: context,
                     builder: (BuildContext context) => Dialog(

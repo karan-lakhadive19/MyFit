@@ -44,6 +44,8 @@ class _SignupState extends State<Signup> {
           'pass': passController.text,
           'height': height,
           'weight': weight,
+          "water": 0.0,
+          "calorie": 0.0
           // Add other user details as needed
         });
         Navigator.push(context, MaterialPageRoute(builder: (context)=>HomePage()));
