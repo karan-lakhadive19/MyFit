@@ -42,7 +42,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
 
   @override
   Widget build(BuildContext context) {
-    String intake = widget.intake; // Store the value in a variable
+    String intake = widget.intake; 
 
     return Scaffold(
       body: SafeArea(
@@ -72,6 +72,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
               ElevatedButton(
                 onPressed: () {
                   updateDoc(controller.text);
+                  Navigator.pop(context);
                 },
                 child: Text("Update"),
               )

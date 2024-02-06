@@ -33,60 +33,66 @@ class _HomePageState extends State<HomePage> {
  @override
 Widget build(BuildContext context) {
   return Scaffold(
-    bottomNavigationBar: Container(
-      decoration: BoxDecoration(
-        color: Colors.white,
-        boxShadow: [
-          BoxShadow(
-            blurRadius: 20,
-            color: Colors.black.withOpacity(.1),
-          ),
-        ],
-      ),
-      child: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 8),
-          child: GNav(
-            rippleColor: Colors.grey[300]!,
-            hoverColor: Colors.grey[100]!,
-            gap: 8,
-            activeColor: Colors.black,
-            iconSize: 24,
-            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-            duration: Duration(milliseconds: 400),
-            tabBackgroundColor: Colors.grey[100]!,
-            color: Colors.black,
-            tabs: [
-              GButton(
-                icon: Icons.home,
-                text: 'Dashboard',
-              ),
-              GButton(
-                icon: Icons.category,
-                text: 'Category',
-              ),
-              GButton(
-                icon: Icons.sports_gymnastics,
-                text: 'Workout',
-              ),
-              GButton(
-                icon: Icons.dining_rounded,
-                text: 'Diet',
-              ),
-            ],
-            selectedIndex: _selectedIndex,
-            onTabChange: (index) {
-              setState(() {
-                _selectedIndex = index;
-                print(_selectedIndex);
-              });
-            },
+    backgroundColor: Color.fromARGB(255, 243, 246, 249),
+    bottomNavigationBar: Padding(
+      padding: const EdgeInsets.all(10.0),
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12),
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+              blurRadius: 20,
+              color: Colors.black.withOpacity(.1),
+            ),
+          ],
+        ),
+        child: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 8),
+            child: GNav(
+              rippleColor: Colors.grey[300]!,
+              hoverColor: Colors.grey[100]!,
+              gap: 8,
+              activeColor: Colors.blue[600],
+              iconSize: 24,
+              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+              duration: Duration(milliseconds: 400),
+              tabBackgroundColor: Color(0xffE0F4FF),
+              color: Colors.blue[300],
+              tabs: [
+                GButton(
+                  icon: Icons.home,
+                  text: 'Dashboard',
+                ),
+                GButton(
+                  icon: Icons.category,
+                  text: 'Category',
+                ),
+                GButton(
+                  icon: Icons.sports_gymnastics,
+                  text: 'Workout',
+                ),
+                GButton(
+                  icon: Icons.dining_rounded,
+                  text: 'Diet',
+                ),
+              ],
+              selectedIndex: _selectedIndex,
+              onTabChange: (index) {
+                setState(() {
+                  _selectedIndex = index;
+                  print(_selectedIndex);
+                });
+              },
+            ),
           ),
         ),
       ),
     ),
     body: 
-    _screens[_selectedIndex]
+     _selectedIndex < _screens.length ? _screens[_selectedIndex] : Container(),
+
   );
 }
 

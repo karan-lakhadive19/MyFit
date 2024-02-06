@@ -6,12 +6,15 @@ class IntroPage2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue,
-      body: Center(
-        child: Container(
-          child: Text("Shree"),
+      body: 
+        Center(
+          child: Container(
+            height: double.infinity,
+            width: double.infinity,
+            child: Image.asset('lib/assets/images/screen2.png'),
+          ),
         ),
-      ),
+      
     );
   }
 }

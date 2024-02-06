@@ -6,12 +6,15 @@ class IntroPage3 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.green,
-      body: Center(
-        child: Container(
-          child: Text("Ram"),
+      body: 
+        Center(
+          child: Container(
+            height: double.infinity,
+            width: double.infinity,
+            child: Image.asset('lib/assets/images/screen3.png'),
+          ),
         ),
-      ),
+      
     );
   }
 }

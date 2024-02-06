@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, sort_child_properties_last
 
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:myfit/screens/intro_screens/intro_page_1.dart';
 import 'package:myfit/screens/intro_screens/intro_page_2.dart';
 import 'package:myfit/screens/intro_screens/intro_page_3.dart';
@@ -42,7 +43,11 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               GestureDetector(
-                child: Text('SKIP'),
+                child: Text('SKIP', style: GoogleFonts.roboto(
+                  color: Colors.blue[600],
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold
+                ),),
                 onTap: () {
                   _controller.jumpToPage(2);
                 },
@@ -50,14 +55,22 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               SmoothPageIndicator(controller: _controller, count: 3),
               onLastPage
                   ? GestureDetector(
-                      child: Text('DONE'),
+                      child: Text('DONE', style: GoogleFonts.roboto(
+                  color: Colors.blue[600],
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold
+                )),
                       onTap: () {
                         Navigator.push(context,
                             MaterialPageRoute(builder: (context) => Signup()));
                       },
                     )
                   : GestureDetector(
-                      child: Text('NEXT'),
+                      child: Text('NEXT', style: GoogleFonts.roboto(
+                  color: Colors.blue[600],
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold
+                )),
                       onTap: () {
                         _controller.nextPage(
                             duration: Duration(milliseconds: 500),

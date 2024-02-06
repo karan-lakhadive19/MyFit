@@ -1,8 +1,11 @@
+// ignore_for_file: prefer_const_constructors, prefer_interpolation_to_compose_strings
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:myfit/screens/update.dart';
 import 'package:myfit/screens/widgets/card_widget.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key});
@@ -48,13 +51,18 @@ class _DashboardState extends State<Dashboard> {
     }
   }
 
+  String caps(String username) {
+    return username[0].toUpperCase() + username.substring(1);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromARGB(255, 243, 246, 249),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
             child: Column(
               children: [
                 Row(
@@ -64,16 +72,21 @@ class _DashboardState extends State<Dashboard> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Container(
-                          child: Text("Welcome Back!" + userName),
+                          child: Text(
+                            "Welcome Back!",
+                            style: GoogleFonts.roboto(
+                                fontSize: 30, fontWeight: FontWeight.w900,),
+                          ),
                         ),
                         SizedBox(
-                          height: 2,
+                          height: 5,
                         ),
                         Container(
-                          child: Text(
-                            userName,
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          ),
+                          child: Text(caps(userName),
+                              style: GoogleFonts.roboto(
+                                  fontSize: 25,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.blue[700])),
                         )
                       ],
                     ),
@@ -81,43 +94,70 @@ class _DashboardState extends State<Dashboard> {
                       width: 10,
                     ),
                     IconButton(
+                      iconSize: 24,
                       onPressed: () {
                         FirebaseAuth.instance.signOut();
                       },
-                      icon: Icon(Icons.logout),
+                      icon: Icon(
+                        Icons.logout,
+                        size: 24,
+                      ),
                     ),
                   ],
                 ),
+                SizedBox(
+                  height: 25,
+                ),
                 CardWidget(height: height, weight: weight),
                 SizedBox(
-                  height: 10,
+                  height: 30,
                 ),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Container(
-                      decoration: BoxDecoration(color: Colors.red),
-                      height: 240,
-                      width: 160,
+                      decoration: BoxDecoration(
+                          color: Color(0xffE0F4FF),
+                          borderRadius: BorderRadius.circular(10)),
+                      height: 280,
+                      width: 180,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Container(
                             width: 140,
-                            child: Image.asset(
-                                'lib/assets/images/water.png'),
+                            child: Image.asset('lib/assets/images/water.png'),
                           ),
                           SizedBox(
-                            height: 5,
+                            height: 8,
                           ),
-                          Text(
-                            water_intake.toString() + "/" + 3700.toString(),
-                            style: TextStyle(color: Colors.black),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                water_intake.toString(),
+                                style: TextStyle(
+                                    color: Color(0xff39A7FF),
+                                    fontWeight: FontWeight.w900,
+                                    fontSize: 25),
+                              ),
+                              SizedBox(
+                                width: 2,
+                              ),
+                              Text("/" + 3700.toString(),
+                                  style: TextStyle(
+                                      color: Colors.blue[600],
+                                      fontWeight: FontWeight.w900,
+                                      fontSize: 25)),
+                            ],
                           ),
                           SizedBox(
-                            height: 5,
+                            height: 10,
                           ),
                           ElevatedButton(
+                            style: ButtonStyle(
+                                backgroundColor: MaterialStateProperty.all(
+                                    Colors.blue[600])),
                             onPressed: () {
                               Navigator.push(
                                 context,
@@ -128,34 +168,58 @@ class _DashboardState extends State<Dashboard> {
                                 ),
                               );
                             },
-                            child: Text("Update"),
+                            child: Text(
+                              "Update",
+                              style: GoogleFonts.roboto(
+                                  fontSize: 17, fontWeight: FontWeight.bold),
+                            ),
                           ),
                         ],
                       ),
                     ),
                     Container(
-                      decoration: BoxDecoration(color: Colors.red),
-                      height: 240,
-                      width: 160,
+                      decoration: BoxDecoration(
+                          color: Color(0xffE0F4FF),
+                          borderRadius: BorderRadius.circular(10)),
+                      height: 280,
+                      width: 180,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Container(
                             width: 140,
-                            child: Image.asset(
-                                'lib/assets/images/cal.png'),
+                            child: Image.asset('lib/assets/images/cal.png'),
                           ),
                           SizedBox(
-                            height: 5,
+                            height: 8,
                           ),
-                          Text(
-                            calorie_intake.toString() + "/" + 2500.toString(),
-                            style: TextStyle(color: Colors.black),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                calorie_intake.toString(),
+                                style: TextStyle(
+                                     color: Color(0xff39A7FF),
+                                    fontWeight: FontWeight.w900,
+                                    fontSize: 25),
+                              ),
+                              SizedBox(
+                                width: 2,
+                              ),
+                              Text("/" + 2500.toString(),
+                                  style: TextStyle(
+                                      color: Colors.blue[600],
+                                      fontWeight: FontWeight.w900,
+                                      fontSize: 25)),
+                            ],
                           ),
                           SizedBox(
-                            height: 5,
+                            height: 10,
                           ),
                           ElevatedButton(
+                            style: ButtonStyle(
+                                backgroundColor: MaterialStateProperty.all(
+                                    Colors.blue[600])),
                             onPressed: () {
                               Navigator.push(
                                 context,
@@ -166,7 +230,11 @@ class _DashboardState extends State<Dashboard> {
                                 ),
                               );
                             },
-                            child: Text("Update"),
+                            child: Text(
+                              "Update",
+                              style: GoogleFonts.roboto(
+                                  fontSize: 17, fontWeight: FontWeight.bold),
+                            ),
                           ),
                         ],
                       ),
