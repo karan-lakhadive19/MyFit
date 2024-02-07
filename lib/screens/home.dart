@@ -22,7 +22,7 @@ class _HomePageState extends State<HomePage> {
   final List<Widget> _screens = [
     // Replace with the actual screen widgets
     Dashboard(),
-    // Category(),
+    Category(),
     WorkoutScreen(),
     Diet()
   ];
