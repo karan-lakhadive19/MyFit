@@ -58,7 +58,7 @@ class _CardWidgetState extends State<CardWidget> {
                     style: GoogleFonts.roboto(
                         fontSize: 22,
                         fontWeight: FontWeight.w900,
-                        color: Color(0xff39A7FF)),
+                        color: Colors.blue[900]),
                   ),
                   SizedBox(
                     height: 7,
