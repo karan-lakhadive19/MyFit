@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'package:myfit/models/model.dart';
+import 'package:myfit/screens/workout_screen.dart';
 
 class WorkoutPage extends StatefulWidget {
   String title;
@@ -49,8 +50,8 @@ class _WorkoutPageState extends State<WorkoutPage> {
     }
   }
 
-  void test() {
-    return;
+  String caps(String username) {
+    return username[0].toUpperCase() + username.substring(1);
   }
 
   @override
@@ -120,33 +121,50 @@ class _WorkoutPageState extends State<WorkoutPage> {
                         return Padding(
                           padding: const EdgeInsets.symmetric(
                               horizontal: 20, vertical: 5),
-                          child: Container(
-                            height: 100,
-                            child: Card(
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(12),
-                                ),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.start,
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Text(workoutList[index].name.toString()),
-                                    ),
-                                    SizedBox(
-                                      height: 5,
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Text('Secondary Muscles: ' + workoutList[index]
-                                          .secondaryMuscles![0]),
-                                    ),
-                                   
-                                    
-                                  ],
-                                )),
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.push(context, MaterialPageRoute(builder: (context)=>Workout(title: workoutList[index].name.toString(),)));
+                            },
+                            child: Container(
+                              height: 120,
+                              child: Card(
+                                  color: Color(0xffEEF5FF),
+                                  elevation: 8,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(12),
+                                  ),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Text(
+                                          caps(
+                                              workoutList[index].name.toString()),
+                                          style: TextStyle(
+                                              color: Colors.blue[700],
+                                              fontWeight: FontWeight.w900,
+                                              fontSize: 20),
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: 5,
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Text(
+                                            'Secondary Muscles: ' +
+                                                caps(workoutList[index]
+                                                    .secondaryMuscles![0]),
+                                            style: TextStyle(
+                                                color: Colors.red[600],
+                                                fontWeight: FontWeight.w900,
+                                                fontSize: 17)),
+                                      ),
+                                    ],
+                                  )),
+                            ),
                           ),
                         );
                       },
