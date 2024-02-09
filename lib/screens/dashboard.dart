@@ -3,6 +3,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:myfit/screens/explore_screens/ai_screen.dart';
 import 'package:myfit/screens/update.dart';
 import 'package:myfit/screens/update_entry.dart';
 import 'package:myfit/screens/widgets/card_widget.dart';
@@ -531,7 +532,7 @@ class _DashboardState extends State<Dashboard> {
                                 Image.asset(
                                     'lib/assets/images/fitness.png', width: 250, height: 200,),
                                     SizedBox(height: 2,),
-                                Text("7-Day Beginner Plan",
+                                Text("Workout Plan",
                                     style: GoogleFonts.poppins(
                                         color: Colors.blue[600],
                                         fontWeight: FontWeight.w900,
@@ -554,13 +555,41 @@ class _DashboardState extends State<Dashboard> {
                                 Image.asset(
                                     'lib/assets/images/diet.png', width: 190, height: 200,),
                                     SizedBox(height: 2,),
-                                Text("Diet Recommendation",
+                                Text("Diet Plan",
                                     style: GoogleFonts.poppins(
                                         color: Colors.blue[600],
                                         fontWeight: FontWeight.w900,
                                         fontSize: 18))
                               ],
                             )),
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=>AIScreen()));
+                        },
+                        child: Container(
+                          height: 250,
+                          width: 220,
+                          child: Container(
+                              decoration: BoxDecoration(
+                                  color: Color(0xffE0F4FF),
+                                  borderRadius: BorderRadius.circular(15)),
+                              child: Column(
+                                children: [
+                                  Image.asset(
+                                      'lib/assets/images/ai.png', width: 190, height: 200,),
+                                      SizedBox(height: 2,),
+                                  Text("Chat with AI",
+                                      style: GoogleFonts.poppins(
+                                          color: Colors.blue[600],
+                                          fontWeight: FontWeight.w900,
+                                          fontSize: 18))
+                                ],
+                              )),
+                        ),
                       ),
                     ],
                   ),
