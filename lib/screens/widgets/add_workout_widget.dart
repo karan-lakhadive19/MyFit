@@ -3,6 +3,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class AddWorkoutWidget extends StatefulWidget {
   const AddWorkoutWidget({super.key});
@@ -49,42 +50,115 @@ class _AddWorkoutWidgetState extends State<AddWorkoutWidget> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      
+      backgroundColor: Color.fromARGB(255, 243, 246, 249),
+      shape: Border.all(style: BorderStyle.none),
       content: Container(
-        height: 300,
+        decoration: BoxDecoration(borderRadius: BorderRadius.circular(12)),
+        height: 270,
         child: Form(
           child: Column(
             children: [
               TextFormField(
-                controller: nameController,
-                decoration: InputDecoration(hintText: "Workout Name"),
-              ),
+                  controller: nameController,
+                  decoration: InputDecoration(
+                    labelText: 'Workout Name',
+                    labelStyle: TextStyle(
+                      color: Colors.blue[600],
+                      fontSize: 15,
+                      fontFamily: 'Poppins',
+                      fontWeight: FontWeight.w600,
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                      borderSide: BorderSide(
+                        width: 1,
+                        color: Colors.blue.shade900,
+                      ),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                      borderSide: BorderSide(
+                        width: 1,
+                        color: Colors.blue.shade900,
+                      ),
+                    ),
+                  )),
               SizedBox(
                 height: 10,
               ),
               TextFormField(
-                controller: setsController,
-                keyboardType: TextInputType.number,
-                decoration: InputDecoration(hintText: "Sets"),
-              ),
+                  controller: setsController,
+                  keyboardType: TextInputType.number,
+                  decoration: InputDecoration(
+                    labelText: 'Sets',
+                    labelStyle: TextStyle(
+                      color: Colors.blue[600],
+                      fontSize: 15,
+                      fontFamily: 'Poppins',
+                      fontWeight: FontWeight.w600,
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                      borderSide: BorderSide(
+                        width: 1,
+                        color: Colors.blue.shade900,
+                      ),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                      borderSide: BorderSide(
+                        width: 1,
+                        color: Colors.blue.shade900,
+                      ),
+                    ),
+                  )),
               SizedBox(
                 height: 10,
               ),
               TextFormField(
-                controller: repsController,
-                keyboardType: TextInputType.number,
-                decoration: InputDecoration(hintText: "Reps"),
-              ),
+                  controller: repsController,
+                  keyboardType: TextInputType.number,
+                  decoration:  InputDecoration(
+                    labelText: 'Reps',
+                    labelStyle: TextStyle(
+                      color: Colors.blue[600],
+                      fontSize: 15,
+                      fontFamily: 'Poppins',
+                      fontWeight: FontWeight.w600,
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                      borderSide: BorderSide(
+                        width: 1,
+                        color: Colors.blue.shade900,
+                      ),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                      borderSide: BorderSide(
+                        width: 1,
+                        color: Colors.blue.shade900,
+                      ),
+                    ),
+                  )),
               SizedBox(
-                height: 10,
+                height: 20,
               ),
               ElevatedButton(
-                  onPressed: () {
-                    addWorkout(nameController.text, setsController.text,
-                        repsController.text);
-                        Navigator.pop(context);
-                  },
-                  child: Text("Add Workout"))
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.blue[900]
+              ),
+                onPressed: () {
+                  addWorkout(nameController.text, setsController.text,
+                      repsController.text);
+                  Navigator.pop(context);
+                },
+                child: Text(
+                  "Add Workout",
+                  style: GoogleFonts.poppins(
+                      fontSize: 17, fontWeight: FontWeight.bold),
+                ),
+              )
             ],
           ),
         ),

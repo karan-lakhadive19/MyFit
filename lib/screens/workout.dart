@@ -1,5 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -17,13 +19,25 @@ class WorkoutScreen extends StatefulWidget {
 class _WorkoutScreenState extends State<WorkoutScreen> {
 
   User? user = FirebaseAuth.instance.currentUser;
-
+  
   @override
   Widget build(BuildContext context) {
     final titleController = TextEditingController();
 
     return Scaffold(
+      appBar: AppBar(
+        // centerTitle: true,
+        toolbarHeight: 60,
+        elevation: 0,
+        backgroundColor: Color.fromARGB(255, 243, 246, 249),
+        title: Text("My Workouts", style: GoogleFonts.poppins(
+                        fontSize: 30,
+                        fontWeight: FontWeight.w900,
+                        color: Colors.blue[900]),
+                  ),
+      ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Color(0xff1176B87),
         onPressed: () {
           showDialog(
             context: context,
@@ -36,12 +50,19 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
       ),
       backgroundColor: Color.fromARGB(255, 243, 246, 249),
       body: Container(
+        
         child: StreamBuilder<QuerySnapshot>(
           stream: FirebaseFirestore.instance.collection('users').doc(user!.uid).collection('workouts').snapshots(),
           builder: (context, snapshot) {
-            if(!snapshot.hasData) {
+            if(!snapshot.hasData || snapshot.data!.docs.isEmpty) {
               return Center(
-                child: Text("Add Workout!")
+                child: Text(
+                    "Add Workout!",
+                    style: GoogleFonts.poppins(
+                        fontSize: 30,
+                        fontWeight: FontWeight.w900,
+                        color: Colors.blue[900]),
+                  ),
               );
             }else if(snapshot.connectionState==ConnectionState.waiting) {
               return Center(child: CircularProgressIndicator(),);
