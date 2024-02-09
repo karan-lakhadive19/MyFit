@@ -95,7 +95,7 @@ class _WorkoutPageState extends State<WorkoutPage> {
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Text(
                 widget.title.toUpperCase(),
-                style: GoogleFonts.roboto(
+                style: GoogleFonts.poppins(
                   fontSize: 25,
                   fontWeight: FontWeight.bold,
                   color: Colors.blue[900],
@@ -126,7 +126,7 @@ class _WorkoutPageState extends State<WorkoutPage> {
                               Navigator.push(context, MaterialPageRoute(builder: (context)=>Workout(title: workoutList[index].name.toString(),)));
                             },
                             child: Container(
-                              height: 120,
+                              height: 130,
                               child: Card(
                                   color: Color(0xffEEF5FF),
                                   elevation: 8,
@@ -142,7 +142,7 @@ class _WorkoutPageState extends State<WorkoutPage> {
                                         child: Text(
                                           caps(
                                               workoutList[index].name.toString()),
-                                          style: TextStyle(
+                                          style: GoogleFonts.poppins(
                                               color: Colors.blue[700],
                                               fontWeight: FontWeight.w900,
                                               fontSize: 20),
@@ -157,7 +157,7 @@ class _WorkoutPageState extends State<WorkoutPage> {
                                             'Secondary Muscles: ' +
                                                 caps(workoutList[index]
                                                     .secondaryMuscles![0]),
-                                            style: TextStyle(
+                                            style: GoogleFonts.poppins(
                                                 color: Colors.red[600],
                                                 fontWeight: FontWeight.w900,
                                                 fontSize: 17)),

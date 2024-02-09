@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class WCard extends StatefulWidget {
 
@@ -25,7 +26,7 @@ class _WCardState extends State<WCard> {
               child: Image.asset(widget.url),
             ),
             SizedBox(height: 2,),
-            Text(widget.title, style: TextStyle(color: Colors.white),)
+            Text(widget.title, style: GoogleFonts.poppins(color: Colors.white),)
           ],
         )
       ),

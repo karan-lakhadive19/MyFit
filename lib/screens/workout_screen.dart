@@ -83,7 +83,7 @@ class _WorkoutState extends State<Workout> {
                       children: [
                         Text(
                          caps(workout_list[index].name.toString()),
-                          style: GoogleFonts.roboto(
+                          style: GoogleFonts.poppins(
                               fontSize: 30,
                               fontWeight: FontWeight.w900,
                               color: Colors.blue[900]),
@@ -100,7 +100,7 @@ class _WorkoutState extends State<Workout> {
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
                             Container(
-                              height: 80,
+                              height: 100,
                               width: 200,
                               decoration: BoxDecoration(
                                 color: Color(0xffE0F4FF),
@@ -109,32 +109,26 @@ class _WorkoutState extends State<Workout> {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(horizontal: 5),
-                                    child: Text("Equipment",
-                                        style: TextStyle(
-                                          color: Colors.blue[900],
-                                          fontWeight: FontWeight.w900,
-                                          fontSize: 20)),
-                                  ),
+                                  Text("Equipment",
+                                      style: GoogleFonts.poppins(
+                                        color: Colors.blue[900],
+                                        fontWeight: FontWeight.w900,
+                                        fontSize: 20)),
                                   SizedBox(
                                     height: 2,
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(horizontal: 5),
-                                    child: Text(
-                                        caps(workout_list[index].equipment.toString()) ??
-                                            'N/A',
-                                        style: TextStyle(
-                                            color: Colors.blue[600],
-                                            fontWeight: FontWeight.w900,
-                                            fontSize: 20)),
-                                  ),
+                                  Text(
+                                      caps(workout_list[index].equipment.toString()) ??
+                                          'N/A',
+                                      style: GoogleFonts.poppins(
+                                          color: Colors.blue[600],
+                                          fontWeight: FontWeight.w900,
+                                          fontSize: 20)),
                                 ],
                               ),
                             ),
                             Container(
-                              height: 80,
+                              height: 100,
                               width: 200,
                               decoration: BoxDecoration(
                                 color: Color(0xffE0F4FF),
@@ -144,7 +138,7 @@ class _WorkoutState extends State<Workout> {
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Text("Target",
-                                      style: TextStyle(
+                                      style: GoogleFonts.poppins(
                                         color: Colors.blue[900],
                                         fontWeight: FontWeight.w900,
                                         fontSize: 20)),
@@ -154,7 +148,7 @@ class _WorkoutState extends State<Workout> {
                                   Text(
                                       caps(workout_list[index].target.toString()) ??
                                           'N/A',
-                                      style: TextStyle(
+                                      style: GoogleFonts.poppins(
                                           color: Colors.blue[600],
                                           fontWeight: FontWeight.w900,
                                           fontSize: 20)),
@@ -166,7 +160,7 @@ class _WorkoutState extends State<Workout> {
                         SizedBox(
                           height: 15,
                         ),
-                        Text('Instructions',style: GoogleFonts.roboto(
+                        Text('Instructions',style: GoogleFonts.poppins(
                               fontSize: 30,
                               fontWeight: FontWeight.w900,
                               color: Colors.blue[900])),
@@ -181,7 +175,7 @@ class _WorkoutState extends State<Workout> {
                               return ListTile(
                                 title: Text(
                                   workout_list[index]
-                                      .instructions![instructionIndex], style: GoogleFonts.roboto(
+                                      .instructions![instructionIndex], style: GoogleFonts.poppins(
                               fontSize: 17,
                               fontWeight: FontWeight.w900,
                               color: Colors.blue[600])

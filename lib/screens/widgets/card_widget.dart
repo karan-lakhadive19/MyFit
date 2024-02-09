@@ -41,7 +41,7 @@ class _CardWidgetState extends State<CardWidget> {
     return Container(
       decoration: BoxDecoration(
           color: Color(0xffE0F4FF), borderRadius: BorderRadius.circular(10)),
-      height: 140,
+      height: 145,
       width: double.infinity,
       child: Padding(
         padding: const EdgeInsets.all(10),
@@ -55,7 +55,7 @@ class _CardWidgetState extends State<CardWidget> {
                 children: [
                   Text(
                     "BMI (Body Mass Index)",
-                    style: GoogleFonts.roboto(
+                    style: GoogleFonts.poppins(
                         fontSize: 22,
                         fontWeight: FontWeight.w900,
                         color: Colors.blue[900]),
@@ -65,7 +65,7 @@ class _CardWidgetState extends State<CardWidget> {
                   ),
                   Text(
                     "You have a $ans !",
-                    style: GoogleFonts.roboto(
+                    style: GoogleFonts.poppins(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
                     ),
@@ -79,7 +79,7 @@ class _CardWidgetState extends State<CardWidget> {
                               MaterialStateProperty.all(Colors.blue[600])),
                       child: Text(
                         "BMI Chart",
-                        style: GoogleFonts.roboto(
+                        style: GoogleFonts.poppins(
                             fontSize: 17, fontWeight: FontWeight.bold),
                       ),
                       onPressed: () => showDialog<String>(
@@ -101,7 +101,7 @@ class _CardWidgetState extends State<CardWidget> {
                                           },
                                           child: Text(
                                             'Close',
-                                            style: GoogleFonts.roboto(
+                                            style: GoogleFonts.poppins(
                                                 fontSize: 17,
                                                 fontWeight: FontWeight.bold),
                                           ),
@@ -112,7 +112,7 @@ class _CardWidgetState extends State<CardWidget> {
                 maxRadius: 42,
                 child: Text(
                   cal.toStringAsFixed(2),
-                  style: GoogleFonts.roboto(
+                  style: GoogleFonts.poppins(
                       fontSize: 18, fontWeight: FontWeight.bold),
                 ))
           ],

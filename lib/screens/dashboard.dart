@@ -80,7 +80,7 @@ class _DashboardState extends State<Dashboard> {
                         Container(
                           child: Text(
                             "Welcome Back!",
-                            style: GoogleFonts.roboto(
+                            style: GoogleFonts.poppins(
                               fontSize: 30,
                               fontWeight: FontWeight.w900,
                             ),
@@ -91,7 +91,7 @@ class _DashboardState extends State<Dashboard> {
                         ),
                         Container(
                           child: Text(caps(userName),
-                              style: GoogleFonts.roboto(
+                              style: GoogleFonts.poppins(
                                   fontSize: 25,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.blue[900])),
@@ -122,7 +122,7 @@ class _DashboardState extends State<Dashboard> {
                 ),
                 Text(
                   'Track your Body',
-                  style: GoogleFonts.roboto(
+                  style: GoogleFonts.poppins(
                       fontSize: 25,
                       fontWeight: FontWeight.w900,
                       color: Colors.blue[900]),
@@ -139,7 +139,7 @@ class _DashboardState extends State<Dashboard> {
                         decoration: BoxDecoration(
                             color: Color(0xffE0F4FF),
                             borderRadius: BorderRadius.circular(10)),
-                        height: 200,
+                        height: 201,
                         width: 190,
                         child: Padding(
                           padding: const EdgeInsets.symmetric(vertical: 10),
@@ -161,7 +161,7 @@ class _DashboardState extends State<Dashboard> {
                                 children: [
                                   Text(
                                     water_intake.toString(),
-                                    style: TextStyle(
+                                    style: GoogleFonts.poppins(
                                         color: Color(0xff39A7FF),
                                         fontWeight: FontWeight.w900,
                                         fontSize: 20),
@@ -170,7 +170,7 @@ class _DashboardState extends State<Dashboard> {
                                     width: 2,
                                   ),
                                   Text("/" + 3700.toString()+" ml",
-                                      style: TextStyle(
+                                      style: GoogleFonts.poppins(
                                           color: Colors.blue[600],
                                           fontWeight: FontWeight.w900,
                                           fontSize: 20)),
@@ -198,7 +198,7 @@ class _DashboardState extends State<Dashboard> {
                                     },
                                     child: Text(
                                       "Update",
-                                      style: GoogleFonts.roboto(
+                                      style: GoogleFonts.poppins(
                                           fontSize: 15,
                                           fontWeight: FontWeight.bold),
                                     ),
@@ -215,7 +215,7 @@ class _DashboardState extends State<Dashboard> {
                                     },
                                     child: Text(
                                       "Reset",
-                                      style: GoogleFonts.roboto(
+                                      style: GoogleFonts.poppins(
                                           fontSize: 15,
                                           fontWeight: FontWeight.bold),
                                     ),
@@ -233,7 +233,7 @@ class _DashboardState extends State<Dashboard> {
                         decoration: BoxDecoration(
                             color: Color(0xffE0F4FF),
                             borderRadius: BorderRadius.circular(10)),
-                        height: 200,
+                        height: 201,
                         width: 190,
                         child: Padding(
                           padding: const EdgeInsets.symmetric(vertical: 10),
@@ -255,7 +255,7 @@ class _DashboardState extends State<Dashboard> {
                                 children: [
                                   Text(
                                     calorie_intake.toString(),
-                                    style: TextStyle(
+                                    style: GoogleFonts.poppins(
                                         color: Color(0xff39A7FF),
                                         fontWeight: FontWeight.w900,
                                         fontSize: 20),
@@ -264,7 +264,7 @@ class _DashboardState extends State<Dashboard> {
                                     width: 2,
                                   ),
                                   Text("/" + 2500.toString()+" cal",
-                                      style: TextStyle(
+                                      style: GoogleFonts.poppins(
                                           color: Colors.blue[600],
                                           fontWeight: FontWeight.w900,
                                           fontSize: 20)),
@@ -293,7 +293,7 @@ class _DashboardState extends State<Dashboard> {
                                     },
                                     child: Text(
                                       "Update",
-                                      style: GoogleFonts.roboto(
+                                      style: GoogleFonts.poppins(
                                           fontSize: 15,
                                           fontWeight: FontWeight.bold),
                                     ),
@@ -309,7 +309,7 @@ class _DashboardState extends State<Dashboard> {
                                     },
                                     child: Text(
                                       "Reset",
-                                      style: GoogleFonts.roboto(
+                                      style: GoogleFonts.poppins(
                                           fontSize: 15,
                                           fontWeight: FontWeight.bold),
                                     ),
@@ -327,7 +327,7 @@ class _DashboardState extends State<Dashboard> {
                         decoration: BoxDecoration(
                             color: Color(0xffE0F4FF),
                             borderRadius: BorderRadius.circular(10)),
-                        height: 200,
+                        height: 201,
                         width: 190,
                         child: Padding(
                           padding: const EdgeInsets.symmetric(vertical: 10),
@@ -349,7 +349,7 @@ class _DashboardState extends State<Dashboard> {
                                 children: [
                                   Text(
                                     height.toString()+" cm",
-                                    style: TextStyle(
+                                    style: GoogleFonts.poppins(
                                         color: Colors.blue[600],
                                         fontWeight: FontWeight.w900,
                                         fontSize: 20),
@@ -381,7 +381,7 @@ class _DashboardState extends State<Dashboard> {
                                     },
                                     child: Text(
                                       "Update",
-                                      style: GoogleFonts.roboto(
+                                      style: GoogleFonts.poppins(
                                           fontSize: 15,
                                           fontWeight: FontWeight.bold),
                                     ),
@@ -397,7 +397,7 @@ class _DashboardState extends State<Dashboard> {
                                     },
                                     child: Text(
                                       "Reset",
-                                      style: GoogleFonts.roboto(
+                                      style: GoogleFonts.poppins(
                                           fontSize: 15,
                                           fontWeight: FontWeight.bold),
                                     ),
@@ -415,7 +415,7 @@ class _DashboardState extends State<Dashboard> {
                         decoration: BoxDecoration(
                             color: Color(0xffE0F4FF),
                             borderRadius: BorderRadius.circular(10)),
-                        height: 200,
+                        height: 201,
                         width: 190,
                         child: Padding(
                           padding: const EdgeInsets.symmetric(vertical: 10),
@@ -437,7 +437,7 @@ class _DashboardState extends State<Dashboard> {
                                 children: [
                                   Text(
                                     weight.toString()+" kg",
-                                    style: TextStyle(
+                                    style: GoogleFonts.poppins(
                                         color: Colors.blue[600],
                                         fontWeight: FontWeight.w900,
                                         fontSize: 20),
@@ -469,7 +469,7 @@ class _DashboardState extends State<Dashboard> {
                                     },
                                     child: Text(
                                       "Update",
-                                      style: GoogleFonts.roboto(
+                                      style: GoogleFonts.poppins(
                                           fontSize: 15,
                                           fontWeight: FontWeight.bold),
                                     ),
@@ -485,7 +485,7 @@ class _DashboardState extends State<Dashboard> {
                                     },
                                     child: Text(
                                       "Reset",
-                                      style: GoogleFonts.roboto(
+                                      style: GoogleFonts.poppins(
                                           fontSize: 15,
                                           fontWeight: FontWeight.bold),
                                     ),
@@ -507,7 +507,7 @@ class _DashboardState extends State<Dashboard> {
                 ),
                 Text(
                   "Explore More!",
-                  style: GoogleFonts.roboto(
+                  style: GoogleFonts.poppins(
                       fontSize: 25,
                       fontWeight: FontWeight.w900,
                       color: Colors.blue[900]),
@@ -532,10 +532,10 @@ class _DashboardState extends State<Dashboard> {
                                     'lib/assets/images/fitness.png', width: 250, height: 200,),
                                     SizedBox(height: 2,),
                                 Text("7-Day Beginner Plan",
-                                    style: TextStyle(
+                                    style: GoogleFonts.poppins(
                                         color: Colors.blue[600],
                                         fontWeight: FontWeight.w900,
-                                        fontSize: 20))
+                                        fontSize: 18))
                               ],
                             )),
                       ),
@@ -555,10 +555,10 @@ class _DashboardState extends State<Dashboard> {
                                     'lib/assets/images/diet.png', width: 190, height: 200,),
                                     SizedBox(height: 2,),
                                 Text("Diet Recommendation",
-                                    style: TextStyle(
+                                    style: GoogleFonts.poppins(
                                         color: Colors.blue[600],
                                         fontWeight: FontWeight.w900,
-                                        fontSize: 20))
+                                        fontSize: 18))
                               ],
                             )),
                       ),

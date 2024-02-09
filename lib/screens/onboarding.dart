@@ -43,7 +43,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               GestureDetector(
-                child: Text('SKIP', style: GoogleFonts.roboto(
+                child: Text('SKIP', style: GoogleFonts.poppins(
                   color: Colors.blue[600],
                   fontSize: 20,
                   fontWeight: FontWeight.bold
@@ -55,7 +55,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               SmoothPageIndicator(controller: _controller, count: 3),
               onLastPage
                   ? GestureDetector(
-                      child: Text('DONE', style: GoogleFonts.roboto(
+                      child: Text('DONE', style: GoogleFonts.poppins(
                   color: Colors.blue[600],
                   fontSize: 20,
                   fontWeight: FontWeight.bold
@@ -66,7 +66,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                       },
                     )
                   : GestureDetector(
-                      child: Text('NEXT', style: GoogleFonts.roboto(
+                      child: Text('NEXT', style: GoogleFonts.poppins(
                   color: Colors.blue[600],
                   fontSize: 20,
                   fontWeight: FontWeight.bold

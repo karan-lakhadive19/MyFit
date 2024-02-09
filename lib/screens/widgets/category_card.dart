@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:myfit/screens/workout.dart';
 import 'package:myfit/screens/workout_page.dart';
 
@@ -31,7 +32,7 @@ class CategoryCard extends StatelessWidget {
             ),
             Text(
               title,
-              style: TextStyle(
+              style: GoogleFonts.poppins(
                   color: Colors.blue[600],
                   fontWeight: FontWeight.w900,
                   fontSize: 25),
