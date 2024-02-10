@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:myfit/screens/explore_screens/ai_screen.dart';
+import 'package:myfit/screens/explore_screens/nutrition.dart';
 import 'package:myfit/screens/update.dart';
 import 'package:myfit/screens/update_entry.dart';
 import 'package:myfit/screens/widgets/card_widget.dart';
@@ -520,25 +521,30 @@ class _DashboardState extends State<Dashboard> {
                   scrollDirection: Axis.horizontal,
                   child: Row(
                     children: [
-                      Container(
-                        height: 250,
-                        width: 220,
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=>Nutrition()));
+                        },
                         child: Container(
-                            decoration: BoxDecoration(
-                                color: Color(0xffE0F4FF),
-                                borderRadius: BorderRadius.circular(15)),
-                            child: Column(
-                              children: [
-                                Image.asset(
-                                    'lib/assets/images/fitness.png', width: 250, height: 200,),
-                                    SizedBox(height: 2,),
-                                Text("Workout Plan",
-                                    style: GoogleFonts.poppins(
-                                        color: Colors.blue[600],
-                                        fontWeight: FontWeight.w900,
-                                        fontSize: 18))
-                              ],
-                            )),
+                          height: 250,
+                          width: 220,
+                          child: Container(
+                              decoration: BoxDecoration(
+                                  color: Color(0xffE0F4FF),
+                                  borderRadius: BorderRadius.circular(15)),
+                              child: Column(
+                                children: [
+                                  Image.asset(
+                                      'lib/assets/images/schedule.png', width: 250, height: 200,),
+                                      SizedBox(height: 2,),
+                                  Text("Guess Nutrition",
+                                      style: GoogleFonts.poppins(
+                                          color: Colors.blue[600],
+                                          fontWeight: FontWeight.w900,
+                                          fontSize: 18))
+                                ],
+                              )),
+                        ),
                       ),
                       SizedBox(
                         width: 10,
