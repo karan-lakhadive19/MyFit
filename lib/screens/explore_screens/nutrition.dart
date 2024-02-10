@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -14,10 +16,15 @@ class Nutrition extends StatefulWidget {
 
 class _NutritionState extends State<Nutrition> {
   final titleController = TextEditingController();
+  String titleField = "";
 
   List<NutritionModel> my_list = [];
 
   Future<NutritionModel?> getdata(String title) async {
+    setState(() {
+      titleField = title;
+      print("karan: $titleField");
+    });
     final apiKey = "fd6cc28ef30d4ac7b7b815e378600866";
 
     try {
@@ -58,6 +65,10 @@ class _NutritionState extends State<Nutrition> {
     }
   }
 
+  String caps(String titleField) {
+    return titleField[0].toUpperCase() + titleField.substring(1);
+  }
+
   @override
   void initState() {
     super.initState();
@@ -67,51 +78,272 @@ class _NutritionState extends State<Nutrition> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromARGB(255, 243, 246, 249),
       body: SafeArea(
         child: Column(
           children: [
             Expanded(
               child: Center(
                 child: my_list.isNotEmpty
-                    ? Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'Calories: ${my_list[0].calories?.value} ${my_list[0].calories?.unit}',
-                            style: TextStyle(fontSize: 18),
+                    ? Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        child: Container(
+                          decoration: BoxDecoration(
+                              color: Color(0xffd8e8ff),
+                              borderRadius: BorderRadius.circular(15)),
+                          height: 700,
+                          width: 800,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    caps(titleField),
+                                    style: GoogleFonts.poppins(
+                                        fontSize: 30,
+                                        fontWeight: FontWeight.w900,
+                                        color: Colors.blue[900]),
+                                  ),
+                                  SizedBox(
+                                    height: 20,
+                                  ),
+                                  Row(
+                                    children: [
+                                      Text('Calories: ',
+                                          style: GoogleFonts.poppins(
+                                              color: Colors.blue[900],
+                                              fontWeight: FontWeight.w900,
+                                              fontSize: 25)),
+                                      SizedBox(
+                                        width: 5,
+                                      ),
+                                      Text(
+                                          '${my_list[0].calories?.value} ${my_list[0].calories?.unit}',
+                                          style: GoogleFonts.poppins(
+                                              color: Colors.blue[800],
+                                              fontWeight: FontWeight.w900,
+                                              fontSize: 25))
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      Text('MIN: ',
+                                          style: GoogleFonts.poppins(
+                                              color: Colors.blue[900],
+                                              fontWeight: FontWeight.w900,
+                                              fontSize: 20)),
+                                      SizedBox(
+                                        width: 5,
+                                      ),
+                                      Text(
+                                          '${my_list[0].calories?.confidenceRange95Percent?.min.toString()}',
+                                          style: GoogleFonts.poppins(
+                                              color: Colors.blue[500],
+                                              fontWeight: FontWeight.w900,
+                                              fontSize: 20)),
+                                      SizedBox(
+                                        width: 20,
+                                      ),
+                                      Text('MAX: ',
+                                          style: GoogleFonts.poppins(
+                                              color: Colors.blue[900],
+                                              fontWeight: FontWeight.w900,
+                                              fontSize: 20)),
+                                      SizedBox(
+                                        width: 5,
+                                      ),
+                                      Text(
+                                          '${my_list[0].calories?.confidenceRange95Percent?.max.toString()}',
+                                          style: GoogleFonts.poppins(
+                                              color: Colors.blue[800],
+                                              fontWeight: FontWeight.w900,
+                                              fontSize: 20)),
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: 25,
+                                  ),
+                                  Row(
+                                    children: [
+                                      Text('Fat: ',
+                                          style: GoogleFonts.poppins(
+                                              color: Colors.blue[900],
+                                              fontWeight: FontWeight.w900,
+                                              fontSize: 25)),
+                                      SizedBox(
+                                        width: 5,
+                                      ),
+                                      Text(
+                                          '${my_list[0].fat?.value} ${my_list[0].fat?.unit}',
+                                          style: GoogleFonts.poppins(
+                                              color: Colors.blue[800],
+                                              fontWeight: FontWeight.w900,
+                                              fontSize: 25))
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      Text('MIN: ',
+                                          style: GoogleFonts.poppins(
+                                              color: Colors.blue[900],
+                                              fontWeight: FontWeight.w900,
+                                              fontSize: 20)),
+                                      SizedBox(
+                                        width: 5,
+                                      ),
+                                      Text(
+                                          '${my_list[0].fat?.confidenceRange95Percent?.min.toString()}',
+                                          style: GoogleFonts.poppins(
+                                              color: Colors.blue[500],
+                                              fontWeight: FontWeight.w900,
+                                              fontSize: 20)),
+                                      SizedBox(
+                                        width: 20,
+                                      ),
+                                      Text('MAX: ',
+                                          style: GoogleFonts.poppins(
+                                              color: Colors.blue[900],
+                                              fontWeight: FontWeight.w900,
+                                              fontSize: 20)),
+                                      SizedBox(
+                                        width: 5,
+                                      ),
+                                      Text(
+                                          '${my_list[0].fat?.confidenceRange95Percent?.max.toString()}',
+                                          style: GoogleFonts.poppins(
+                                              color: Colors.blue[800],
+                                              fontWeight: FontWeight.w900,
+                                              fontSize: 20)),
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: 25,
+                                  ),
+                                  Row(
+                                    children: [
+                                      Text('Protein: ',
+                                          style: GoogleFonts.poppins(
+                                              color: Colors.blue[900],
+                                              fontWeight: FontWeight.w900,
+                                              fontSize: 25)),
+                                      SizedBox(
+                                        width: 5,
+                                      ),
+                                      Text(
+                                          '${my_list[0].protein?.value} ${my_list[0].protein?.unit}',
+                                          style: GoogleFonts.poppins(
+                                              color: Colors.blue[800],
+                                              fontWeight: FontWeight.w900,
+                                              fontSize: 25))
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      Text('MIN: ',
+                                          style: GoogleFonts.poppins(
+                                              color: Colors.blue[900],
+                                              fontWeight: FontWeight.w900,
+                                              fontSize: 20)),
+                                      SizedBox(
+                                        width: 5,
+                                      ),
+                                      Text(
+                                          '${my_list[0].protein?.confidenceRange95Percent?.min.toString()}',
+                                          style: GoogleFonts.poppins(
+                                              color: Colors.blue[500],
+                                              fontWeight: FontWeight.w900,
+                                              fontSize: 20)),
+                                      SizedBox(
+                                        width: 20,
+                                      ),
+                                      Text('MAX: ',
+                                          style: GoogleFonts.poppins(
+                                              color: Colors.blue[900],
+                                              fontWeight: FontWeight.w900,
+                                              fontSize: 20)),
+                                      SizedBox(
+                                        width: 5,
+                                      ),
+                                      Text(
+                                          '${my_list[0].protein?.confidenceRange95Percent?.max.toString()}',
+                                          style: GoogleFonts.poppins(
+                                              color: Colors.blue[800],
+                                              fontWeight: FontWeight.w900,
+                                              fontSize: 20)),
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: 25,
+                                  ),
+                                  Row(
+                                    children: [
+                                      Text('Carbs: ',
+                                          style: GoogleFonts.poppins(
+                                              color: Colors.blue[900],
+                                              fontWeight: FontWeight.w900,
+                                              fontSize: 25)),
+                                      SizedBox(
+                                        width: 5,
+                                      ),
+                                      Text(
+                                          '${my_list[0].carbs?.value} ${my_list[0].carbs?.unit}',
+                                          style: GoogleFonts.poppins(
+                                              color: Colors.blue[800],
+                                              fontWeight: FontWeight.w900,
+                                              fontSize: 25))
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      Text('MIN: ',
+                                          style: GoogleFonts.poppins(
+                                              color: Colors.blue[900],
+                                              fontWeight: FontWeight.w900,
+                                              fontSize: 20)),
+                                      SizedBox(
+                                        width: 5,
+                                      ),
+                                      Text(
+                                          '${my_list[0].carbs?.confidenceRange95Percent?.min.toString()}',
+                                          style: GoogleFonts.poppins(
+                                              color: Colors.blue[500],
+                                              fontWeight: FontWeight.w900,
+                                              fontSize: 20)),
+                                      SizedBox(
+                                        width: 20,
+                                      ),
+                                      Text('MAX: ',
+                                          style: GoogleFonts.poppins(
+                                              color: Colors.blue[900],
+                                              fontWeight: FontWeight.w900,
+                                              fontSize: 20)),
+                                      SizedBox(
+                                        width: 5,
+                                      ),
+                                      Text(
+                                          '${my_list[0].carbs?.confidenceRange95Percent?.max.toString()}',
+                                          style: GoogleFonts.poppins(
+                                              color: Colors.blue[800],
+                                              fontWeight: FontWeight.w900,
+                                              fontSize: 20)),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ],
                           ),
-                          Text(
-                            'MIN: ${my_list[0].calories?.confidenceRange95Percent?.min.toString()}'
-                            'Max: ${my_list[0].calories?.confidenceRange95Percent?.max.toString()}'
-                          ),
-                          Text(
-                            'Fat: ${my_list[0].fat?.value} ${my_list[0].fat?.unit}',
-                            style: TextStyle(fontSize: 18),
-                          ),
-                          Text(
-                            'MIN: ${my_list[0].fat?.confidenceRange95Percent?.min.toString()}'
-                            'Max: ${my_list[0].fat?.confidenceRange95Percent?.max.toString()}'
-                          ),
-                          Text(
-                            'Protein: ${my_list[0].protein?.value} ${my_list[0].protein?.unit}',
-                            style: TextStyle(fontSize: 18),
-                          ),
-                          Text(
-                            'MIN: ${my_list[0].protein?.confidenceRange95Percent?.min.toString()}'
-                            'Max: ${my_list[0].protein?.confidenceRange95Percent?.max.toString()}'
-                          ),
-                          Text(
-                            'Carbs: ${my_list[0].carbs?.value} ${my_list[0].carbs?.unit}',
-                            style: TextStyle(fontSize: 18),
-                          ),
-                          Text(
-                            'MIN: ${my_list[0].carbs?.confidenceRange95Percent?.min.toString()}'
-                            'Max: ${my_list[0].carbs?.confidenceRange95Percent?.max.toString()}'
-                          ),
-                        ],
+                        ),
                       )
                     : my_list.isEmpty
-                        ? Text("No data found.")
+                        ? Text("Search Something!",
+                            style: GoogleFonts.poppins(
+                                fontSize: 30,
+                                fontWeight: FontWeight.w900,
+                                color: Colors.blue[900]))
                         : CircularProgressIndicator(),
               ),
             ),
@@ -147,19 +379,22 @@ class _NutritionState extends State<Nutrition> {
                       ),
                     ),
                   ),
-                  SizedBox(width: 10),
-
-                  ElevatedButton(
-                    onPressed: () {
-                      fetchData();
-                      titleController.clear();
-                    },
-                    
-                    child: Text("Search"),
-                    style: ElevatedButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(
-                            20.0), // Adjust the value as needed
+                  SizedBox(width: 20),
+                  Container(
+                    decoration: BoxDecoration(
+                        color: Color(0xffEEF5FF),
+                        borderRadius: BorderRadius.circular(20)),
+                    height: 50,
+                    width: 50,
+                    child: IconButton(
+                      onPressed: () {
+                        fetchData();
+                        titleController.clear();
+                      },
+                      icon: Icon(
+                        Icons.search,
+                        color: Colors.blue[600],
+                        size: 35,
                       ),
                     ),
                   ),
