@@ -1,8 +1,11 @@
 // ignore_for_file: prefer_const_constructors, prefer_interpolation_to_compose_strings
 
+import 'dart:convert';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:myfit/models/calorie.dart';
 import 'package:myfit/screens/explore_screens/ai_screen.dart';
 import 'package:myfit/screens/explore_screens/nutrition.dart';
 import 'package:myfit/screens/update.dart';
@@ -10,6 +13,7 @@ import 'package:myfit/screens/update_entry.dart';
 import 'package:myfit/screens/widgets/card_widget.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myfit/screens/widgets/workout_card.dart';
+import 'package:http/http.dart' as http;
 
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key});
@@ -25,6 +29,8 @@ class _DashboardState extends State<Dashboard> {
   String uid = "";
   int water_intake = 0;
   int calorie_intake = 0;
+  double age = 0;
+  dynamic my_cals = 0;
 
   @override
   void initState() {
@@ -50,8 +56,50 @@ class _DashboardState extends State<Dashboard> {
           uid = user.uid;
           water_intake = (userDoc['water'] ?? 0).toInt();
           calorie_intake = (userDoc['calorie'] ?? 0).toInt();
+          age = (userDoc['age'] ?? 0).toDouble();
+          getData();
         });
       });
+    }
+  }
+
+  List<CalorieModel> calorie_list = [];
+
+  Future<void> getData() async {
+    try {
+      final response = await http.post(
+        Uri.parse(
+            'https://gym-calculations.p.rapidapi.com/calculate-macronutrient-ratios'),
+        headers: {
+          'content-type': 'application/json',
+          'X-RapidAPI-Key':
+              '017b7e528dmsh55e7f82a92b3be3p1d2ac0jsnb38d7c7a70e8',
+          'X-RapidAPI-Host': 'gym-calculations.p.rapidapi.com',
+        },
+        body: jsonEncode({
+          'goal': 'maintain',
+          'weight': weight,
+          'height': height / 100,
+          'age': age,
+          'gender': 'male',
+          'activity_level': 'sedentary',
+        }),
+      );
+
+      if (response.statusCode == 200) {
+        final data = jsonDecode(response.body);
+        calorie_list = [CalorieModel.fromJson(data)];
+        print('API Response: $data');
+        setState(() {
+          my_cals = calorie_list[0].result?.calories;
+        });
+      } else {
+        // Handle API error
+        print('API Error: ${response.statusCode}');
+      }
+    } catch (e) {
+      // Handle general errors (e.g., network issues)
+      print('Error: $e');
     }
   }
 
@@ -109,8 +157,9 @@ class _DashboardState extends State<Dashboard> {
                         FirebaseAuth.instance.signOut();
                       },
                       icon: Icon(
+                        color: Colors.blue[900],
                         Icons.logout,
-                        size: 24,
+                        size: 40,
                       ),
                     ),
                   ],
@@ -171,7 +220,7 @@ class _DashboardState extends State<Dashboard> {
                                   SizedBox(
                                     width: 2,
                                   ),
-                                  Text("/" + 3700.toString()+" ml",
+                                  Text("/" + 3700.toString() + " ml",
                                       style: GoogleFonts.poppins(
                                           color: Colors.blue[600],
                                           fontWeight: FontWeight.w900,
@@ -182,12 +231,14 @@ class _DashboardState extends State<Dashboard> {
                                 height: 5,
                               ),
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
                                 children: [
                                   ElevatedButton(
                                     style: ButtonStyle(
-                                        backgroundColor: MaterialStateProperty.all(
-                                            Colors.blue[600])),
+                                        backgroundColor:
+                                            MaterialStateProperty.all(
+                                                Colors.blue[600])),
                                     onPressed: () {
                                       Navigator.push(
                                         context,
@@ -205,15 +256,16 @@ class _DashboardState extends State<Dashboard> {
                                           fontWeight: FontWeight.bold),
                                     ),
                                   ),
-
                                   ElevatedButton(
                                     style: ButtonStyle(
-                                        backgroundColor: MaterialStateProperty.all(
-                                            Colors.red[600])),
+                                        backgroundColor:
+                                            MaterialStateProperty.all(
+                                                Colors.red[600])),
                                     onPressed: () {
-                                      FirebaseFirestore.instance.collection('users').doc(user!.uid).update({
-                                        'water': 0
-                                      });
+                                      FirebaseFirestore.instance
+                                          .collection('users')
+                                          .doc(user!.uid)
+                                          .update({'water': 0});
                                     },
                                     child: Text(
                                       "Reset",
@@ -265,24 +317,31 @@ class _DashboardState extends State<Dashboard> {
                                   SizedBox(
                                     width: 2,
                                   ),
-                                  Text("/" + 2500.toString()+" cal",
-                                      style: GoogleFonts.poppins(
-                                          color: Colors.blue[600],
-                                          fontWeight: FontWeight.w900,
-                                          fontSize: 20)),
+                                  Text(
+                                    "/ " +
+                                        (calorie_list.isNotEmpty
+                                            ? my_cals.toString() +
+                                                " cal" // Assuming "cal" is the unit
+                                            : "N/A"),
+                                    style: GoogleFonts.poppins(
+                                        color: Colors.blue[600],
+                                        fontWeight: FontWeight.w900,
+                                        fontSize: 20),
+                                  ),
                                 ],
                               ),
                               SizedBox(
                                 height: 5,
                               ),
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
                                 children: [
-                                  
                                   ElevatedButton(
                                     style: ButtonStyle(
-                                        backgroundColor: MaterialStateProperty.all(
-                                            Colors.blue[600])),
+                                        backgroundColor:
+                                            MaterialStateProperty.all(
+                                                Colors.blue[600])),
                                     onPressed: () {
                                       Navigator.push(
                                         context,
@@ -300,14 +359,16 @@ class _DashboardState extends State<Dashboard> {
                                           fontWeight: FontWeight.bold),
                                     ),
                                   ),
-                                   ElevatedButton(
+                                  ElevatedButton(
                                     style: ButtonStyle(
-                                        backgroundColor: MaterialStateProperty.all(
-                                            Colors.red[600])),
+                                        backgroundColor:
+                                            MaterialStateProperty.all(
+                                                Colors.red[600])),
                                     onPressed: () {
-                                      FirebaseFirestore.instance.collection('users').doc(user!.uid).update({
-                                        'calorie': 0
-                                      });
+                                      FirebaseFirestore.instance
+                                          .collection('users')
+                                          .doc(user!.uid)
+                                          .update({'calorie': 0});
                                     },
                                     child: Text(
                                       "Reset",
@@ -350,7 +411,7 @@ class _DashboardState extends State<Dashboard> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text(
-                                    height.toString()+" cm",
+                                    height.toString() + " cm",
                                     style: GoogleFonts.poppins(
                                         color: Colors.blue[600],
                                         fontWeight: FontWeight.w900,
@@ -365,12 +426,14 @@ class _DashboardState extends State<Dashboard> {
                                 height: 5,
                               ),
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
                                 children: [
                                   ElevatedButton(
                                     style: ButtonStyle(
-                                        backgroundColor: MaterialStateProperty.all(
-                                            Colors.blue[600])),
+                                        backgroundColor:
+                                            MaterialStateProperty.all(
+                                                Colors.blue[600])),
                                     onPressed: () {
                                       Navigator.push(
                                         context,
@@ -388,14 +451,16 @@ class _DashboardState extends State<Dashboard> {
                                           fontWeight: FontWeight.bold),
                                     ),
                                   ),
-                                   ElevatedButton(
+                                  ElevatedButton(
                                     style: ButtonStyle(
-                                        backgroundColor: MaterialStateProperty.all(
-                                            Colors.red[600])),
+                                        backgroundColor:
+                                            MaterialStateProperty.all(
+                                                Colors.red[600])),
                                     onPressed: () {
-                                      FirebaseFirestore.instance.collection('users').doc(user!.uid).update({
-                                        'height': 0
-                                      });
+                                      FirebaseFirestore.instance
+                                          .collection('users')
+                                          .doc(user!.uid)
+                                          .update({'height': 0});
                                     },
                                     child: Text(
                                       "Reset",
@@ -438,7 +503,7 @@ class _DashboardState extends State<Dashboard> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text(
-                                    weight.toString()+" kg",
+                                    weight.toString() + " kg",
                                     style: GoogleFonts.poppins(
                                         color: Colors.blue[600],
                                         fontWeight: FontWeight.w900,
@@ -453,12 +518,14 @@ class _DashboardState extends State<Dashboard> {
                                 height: 5,
                               ),
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
                                 children: [
                                   ElevatedButton(
                                     style: ButtonStyle(
-                                        backgroundColor: MaterialStateProperty.all(
-                                            Colors.blue[600])),
+                                        backgroundColor:
+                                            MaterialStateProperty.all(
+                                                Colors.blue[600])),
                                     onPressed: () {
                                       Navigator.push(
                                         context,
@@ -476,14 +543,16 @@ class _DashboardState extends State<Dashboard> {
                                           fontWeight: FontWeight.bold),
                                     ),
                                   ),
-                                   ElevatedButton(
+                                  ElevatedButton(
                                     style: ButtonStyle(
-                                        backgroundColor: MaterialStateProperty.all(
-                                            Colors.red[600])),
+                                        backgroundColor:
+                                            MaterialStateProperty.all(
+                                                Colors.red[600])),
                                     onPressed: () {
-                                      FirebaseFirestore.instance.collection('users').doc(user!.uid).update({
-                                        'weight': 0
-                                      });
+                                      FirebaseFirestore.instance
+                                          .collection('users')
+                                          .doc(user!.uid)
+                                          .update({'weight': 0});
                                     },
                                     child: Text(
                                       "Reset",
@@ -523,7 +592,10 @@ class _DashboardState extends State<Dashboard> {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context)=>Nutrition()));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Nutrition()));
                         },
                         child: Container(
                           height: 250,
@@ -535,8 +607,13 @@ class _DashboardState extends State<Dashboard> {
                               child: Column(
                                 children: [
                                   Image.asset(
-                                      'lib/assets/images/schedule.png', width: 250, height: 200,),
-                                      SizedBox(height: 2,),
+                                    'lib/assets/images/schedule.png',
+                                    width: 250,
+                                    height: 200,
+                                  ),
+                                  SizedBox(
+                                    height: 2,
+                                  ),
                                   Text("Guess Nutrition",
                                       style: GoogleFonts.poppins(
                                           color: Colors.blue[600],
@@ -559,8 +636,13 @@ class _DashboardState extends State<Dashboard> {
                             child: Column(
                               children: [
                                 Image.asset(
-                                    'lib/assets/images/diet.png', width: 190, height: 200,),
-                                    SizedBox(height: 2,),
+                                  'lib/assets/images/diet.png',
+                                  width: 190,
+                                  height: 200,
+                                ),
+                                SizedBox(
+                                  height: 2,
+                                ),
                                 Text("Diet Plan",
                                     style: GoogleFonts.poppins(
                                         color: Colors.blue[600],
@@ -574,7 +656,10 @@ class _DashboardState extends State<Dashboard> {
                       ),
                       GestureDetector(
                         onTap: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context)=>AIScreen()));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => AIScreen()));
                         },
                         child: Container(
                           height: 250,
@@ -586,8 +671,13 @@ class _DashboardState extends State<Dashboard> {
                               child: Column(
                                 children: [
                                   Image.asset(
-                                      'lib/assets/images/ai.png', width: 190, height: 200,),
-                                      SizedBox(height: 2,),
+                                    'lib/assets/images/ai.png',
+                                    width: 190,
+                                    height: 200,
+                                  ),
+                                  SizedBox(
+                                    height: 2,
+                                  ),
                                   Text("Chat with AI",
                                       style: GoogleFonts.poppins(
                                           color: Colors.blue[600],

@@ -339,7 +339,7 @@ class _NutritionState extends State<Nutrition> {
                         ),
                       )
                     : my_list.isEmpty
-                        ? Text("Search Something!",
+                        ? Text("Search Product!",
                             style: GoogleFonts.poppins(
                                 fontSize: 30,
                                 fontWeight: FontWeight.w900,

@@ -23,6 +23,7 @@ class _SignupState extends State<Signup> {
     final passController = TextEditingController();
     final heightController = TextEditingController();
     final weightController = TextEditingController();
+    final ageController = TextEditingController();
 
     FirebaseAuth auth = FirebaseAuth.instance;
 
@@ -33,6 +34,7 @@ class _SignupState extends State<Signup> {
 
             double height = double.parse(heightController.text);
             double weight = double.parse(weightController.text);
+            int age = int.parse(ageController.text);
 
         // Add user details to Firestore
         await FirebaseFirestore.instance
@@ -45,7 +47,8 @@ class _SignupState extends State<Signup> {
           'height': height,
           'weight': weight,
           "water": 0.0,
-          "calorie": 0.0
+          "calorie": 0.0,
+          "age": age
           // Add other user details as needed
         });
         Navigator.push(context, MaterialPageRoute(builder: (context)=>HomePage()));
@@ -125,6 +128,24 @@ class _SignupState extends State<Signup> {
                   SizedBox(
                     height: 20,
                   ),
+
+
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 30),
+                    child: TextFormField(
+                      keyboardType: TextInputType.number,
+                      decoration: InputDecoration(
+                          hintText: "Enter age",
+                          prefixIcon: Icon(Icons.power_off_outlined),
+                          labelText: "Age"),
+                      controller: ageController,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+
+
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 30),
                     child: TextFormField(
