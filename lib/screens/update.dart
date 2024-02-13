@@ -53,7 +53,6 @@ class _UpdateScreenState extends State<UpdateScreen> {
 
     return AlertDialog(
       content: Container(
-        
         height: 180,
           child: Column(
             children: [
