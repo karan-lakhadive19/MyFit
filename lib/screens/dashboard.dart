@@ -6,6 +6,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:myfit/models/calorie.dart';
+import 'package:myfit/screens/auth/login.dart';
 import 'package:myfit/screens/explore_screens/ai_screen.dart';
 import 'package:myfit/screens/explore_screens/nutrition.dart';
 import 'package:myfit/screens/update.dart';
@@ -103,9 +104,13 @@ class _DashboardState extends State<Dashboard> {
     }
   }
 
-  String caps(String username) {
-    return username[0].toUpperCase() + username.substring(1);
-  }
+  // String caps(String username) {
+  //   return username[0].toUpperCase() + username.substring(1);
+  // }
+  String caps(String? input) {
+  return input?.toUpperCase() ?? '';
+}
+
 
   @override
   Widget build(BuildContext context) {
@@ -152,14 +157,14 @@ class _DashboardState extends State<Dashboard> {
                       width: 10,
                     ),
                     IconButton(
-                      iconSize: 24,
-                      onPressed: () {
-                        FirebaseAuth.instance.signOut();
+                      onPressed: () async{
+                       await FirebaseAuth.instance.signOut();
+                       Navigator.push(context, MaterialPageRoute(builder: (context)=>Login()));
                       },
                       icon: Icon(
                         color: Colors.blue[900],
                         Icons.logout,
-                        size: 40,
+                      
                       ),
                     ),
                   ],
@@ -240,14 +245,18 @@ class _DashboardState extends State<Dashboard> {
                                             MaterialStateProperty.all(
                                                 Colors.blue[600])),
                                     onPressed: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) => UpdateScreen(
-                                            intake: "Water",
-                                          ),
-                                        ),
-                                      );
+                                      // Navigator.push(
+                                      //   context,
+                                      //   MaterialPageRoute(
+                                      //     builder: (context) => UpdateScreen(
+                                      //       intake: "Water",
+                                      //     ),
+                                      //   ),
+                                      // );
+                                      showDialog(context: context, builder: (context) {
+                                        
+                                        return UpdateScreen(intake: "Water");
+                                      });
                                     },
                                     child: Text(
                                       "Update",
@@ -343,14 +352,17 @@ class _DashboardState extends State<Dashboard> {
                                             MaterialStateProperty.all(
                                                 Colors.blue[600])),
                                     onPressed: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) => UpdateScreen(
-                                            intake: "Calorie",
-                                          ),
-                                        ),
-                                      );
+                                      // Navigator.push(
+                                      //   context,
+                                      //   MaterialPageRoute(
+                                      //     builder: (context) => UpdateScreen(
+                                      //       intake: "Calorie",
+                                      //     ),
+                                      //   ),
+                                      // );
+                                      showDialog(context: context, builder: (context) {
+                                        return UpdateScreen(intake: "Calorie");
+                                      });
                                     },
                                     child: Text(
                                       "Update",
@@ -435,14 +447,17 @@ class _DashboardState extends State<Dashboard> {
                                             MaterialStateProperty.all(
                                                 Colors.blue[600])),
                                     onPressed: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) => UpdateScreen(
-                                            intake: "Height",
-                                          ),
-                                        ),
-                                      );
+                                      // Navigator.push(
+                                      //   context,
+                                      //   MaterialPageRoute(
+                                      //     builder: (context) => UpdateScreen(
+                                      //       intake: "Height",
+                                      //     ),
+                                      //   ),
+                                      // );
+                                      showDialog(context: context, builder: (context) {
+                                        return UpdateScreen(intake: "Height");
+                                      });
                                     },
                                     child: Text(
                                       "Update",
@@ -527,14 +542,17 @@ class _DashboardState extends State<Dashboard> {
                                             MaterialStateProperty.all(
                                                 Colors.blue[600])),
                                     onPressed: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) => UpdateScreen(
-                                            intake: "Weight",
-                                          ),
-                                        ),
-                                      );
+                                      // Navigator.push(
+                                      //   context,
+                                      //   MaterialPageRoute(
+                                      //     builder: (context) => UpdateScreen(
+                                      //       intake: "Weight",
+                                      //     ),
+                                      //   ),
+                                      // );
+                                      showDialog(context: context, builder: (context) {
+                                        return UpdateScreen(intake: "Weight");
+                                      });
                                     },
                                     child: Text(
                                       "Update",

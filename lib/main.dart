@@ -3,11 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:myfit/screens/home.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:myfit/screens/onboarding.dart';
+import 'package:myfit/services/notification_service.dart';
 import 'firebase_options.dart';
+import 'package:timezone/data/latest.dart' as tz;
 
 void main() async{
   
   WidgetsFlutterBinding.ensureInitialized();
+  // NotificationService().initNotification();
+  // tz.initializeTimeZones();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
 );

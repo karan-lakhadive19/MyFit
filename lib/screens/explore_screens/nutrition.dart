@@ -388,7 +388,8 @@ class _NutritionState extends State<Nutrition> {
                     width: 50,
                     child: IconButton(
                       onPressed: () {
-                        fetchData();
+                        titleController.text.isNotEmpty?
+                        fetchData(): print("input something...");
                         titleController.clear();
                       },
                       icon: Icon(

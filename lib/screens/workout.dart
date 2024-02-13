@@ -37,7 +37,7 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
                   ),
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Color(0xff1176B87),
+        backgroundColor: Colors.blue[900],
         onPressed: () {
           showDialog(
             context: context,

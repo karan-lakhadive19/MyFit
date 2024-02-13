@@ -3,6 +3,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+// import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+import 'package:flutter_datetime_picker_plus/flutter_datetime_picker_plus.dart'
+    as picker;
+import 'package:google_fonts/google_fonts.dart';
+import 'package:myfit/services/notification_service.dart';
+
+DateTime scheduleTime = DateTime.now();
 
 class UpdateScreen extends StatefulWidget {
   String intake = "";
@@ -44,13 +51,14 @@ class _UpdateScreenState extends State<UpdateScreen> {
   Widget build(BuildContext context) {
     String intake = widget.intake; 
 
-    return Scaffold(
-      body: SafeArea(
-        child: Container(
+    return AlertDialog(
+      content: Container(
+        
+        height: 180,
           child: Column(
             children: [
               Container(
-                child: Text(intake),
+                child: Text(intake, style: GoogleFonts.poppins(color: Colors.blue[900], fontSize: 18, fontWeight: FontWeight.bold),),
               ),
               SizedBox(
                 height: 10,
@@ -58,29 +66,102 @@ class _UpdateScreenState extends State<UpdateScreen> {
               TextField(
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
-                  hintText: "Update here",
-                  prefixIcon: intake == "Water"
-                      ? Icon(Icons.water)
-                      : Icon(Icons.food_bank),
-                  labelText: "Update",
-                ),
+                    labelText: intake,
+                    labelStyle: TextStyle(
+                      color: Colors.blue[600],
+                      fontSize: 15,
+                      fontFamily: 'Poppins',
+                      fontWeight: FontWeight.w600,
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                      borderSide: BorderSide(
+                        width: 1,
+                        color: Colors.blue.shade900,
+                      ),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                      borderSide: BorderSide(
+                        width: 1,
+                        color: Colors.blue.shade900,
+                      ),
+                    ),
+                  ),
                 controller: controller,
               ),
               SizedBox(
-                height: 10,
+                height: 20,
               ),
               ElevatedButton(
-                onPressed: () {
-                  updateDoc(controller.text);
-                  Navigator.pop(context);
-                },
-                child: Text("Update"),
-              )
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.blue[600]),
+                        onPressed: () {
+                          updateDoc(controller.text);
+                          Navigator.pop(context);
+                        },
+                        child: Text(
+                          "Update",
+                          style: GoogleFonts.poppins(
+                              fontSize: 17, fontWeight: FontWeight.bold),
+                        ),
+                      )
+            //   DatePickerTxt(),
+            // ScheduleBtn(),
             ],
           ),
         ),
-      ),
-    );
+      );
+    
   }
 }
+
+// class DatePickerTxt extends StatefulWidget {
+//   const DatePickerTxt({
+//     Key? key,
+//   }) : super(key: key);
+
+//   @override
+//   State<DatePickerTxt> createState() => _DatePickerTxtState();
+// }
+
+// class _DatePickerTxtState extends State<DatePickerTxt> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return TextButton(
+//       onPressed: () {
+//         picker.DatePicker.showDateTimePicker(
+//           context,
+//           showTitleActions: true,
+//           onChanged: (date) => scheduleTime = date,
+//           onConfirm: (date) {},
+//         );
+//       },
+//       child: const Text(
+//         'Select Date Time',
+//         style: TextStyle(color: Colors.blue),
+//       ),
+//     );
+//   }
+// }
+
+// class ScheduleBtn extends StatelessWidget {
+//   const ScheduleBtn({
+//     Key? key,
+//   }) : super(key: key);
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return ElevatedButton(
+//       child: const Text('Schedule notifications'),
+//       onPressed: () {
+//         debugPrint('Notification Scheduled for $scheduleTime');
+//         NotificationService().scheduleNotification(
+//             title: 'Scheduled Notification',
+//             body: '$scheduleTime',
+//             scheduledNotificationDateTime: scheduleTime);
+//       },
+//     );
+//   }
+// }
 
